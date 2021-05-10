@@ -9,9 +9,9 @@ steps:
   - name: test
     image: node:16
     commands:
-      - sleep 10
       - npm install
       - ./node_modules/pm2/bin/pm2 --name Test start npm -- start 
+      - sleep 60
       - npm test
       - ./node_modules/pm2/bin/pm2 --name Test stop all
 services:
