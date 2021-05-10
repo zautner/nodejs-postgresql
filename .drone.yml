@@ -2,9 +2,30 @@ kind: pipeline
 type: docker
 name: node16
 
+platform:
+  os: linux
+
 steps:
   - name: test
     image: node:16
     commands:
+      - sleep 10
       - npm install
       - npm test
+services:
+  - name: postgesql
+    image: postgresql:latest
+    environment: 
+      POSTGRES_USER: rapidapi_adm
+      POSTGRES_PASSWORD: rapidapi
+      POSTGRES_DB: rapidapi_adm
+      PGDATA: /var/lib/postgresql/data/pgdata
+    command:
+      - "CREATE SEQUENCE quote_id_seq START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE CACHE 1;
+        CREATE TABLE quote (
+            id bigint DEFAULT nextval('quote_id_seq'::regclass) NOT NULL PRIMARY KEY,
+            quote character varying(255) NOT NULL UNIQUE,
+            author character varying(255) NOT NULL,
+            created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+            updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+        );"

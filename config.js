@@ -9,6 +9,7 @@ const config = {
     database: env.DB_NAME || 'rapidapi_adm',
   },
   listPerPage: env.LIST_PER_PAGE || 10,
+  port: env.PORT || 3000,
 }
 
 module.exports = config
