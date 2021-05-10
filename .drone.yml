@@ -26,12 +26,12 @@ services:
       - PGPASSWORD=rapidapi psql -a -h 0 --user rapidapi_adm rapidapi_adm -c "CREATE SEQUENCE quota_id_seq START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE CACHE 1;
         CREATE TABLE quota (
             id bigint DEFAULT nextval('quota_id_seq'::regclass) NOT NULL PRIMARY KEY,
-            quota_id character varying(255) NOT NULL UNIQUE,
+            quota character varying(255) NOT NULL UNIQUE,
             author character varying(255) NOT NULL,
             created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
             updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
         ); 
-        INSERT INTO quote (quote, author) VALUES ('There are only two kinds of languages - the ones people complain about and the ones nobody uses.', 'Bjarne Stroustrup'), 
+        INSERT INTO quota (quota, author) VALUES ('There are only two kinds of languages - the ones people complain about and the ones nobody uses.', 'Bjarne Stroustrup'), 
          ('Any fool can write code that a computer can understand. Good programmers write code that humans can understand.', 'Martin Fowler'), 
           ('First, solve the problem. Then, write the code.', 'John Johnson'), 
           ('Java is to JavaScript what car is to Carpet.', 'Chris Heilmann'), 
