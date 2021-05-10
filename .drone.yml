@@ -8,6 +8,8 @@ platform:
 steps:
   - name: test
     image: node:16
+    environment:
+      DB_HOST: podtgresql
     commands:
       - npm install
       - ./node_modules/pm2/bin/pm2 --name Test start npm -- start 
