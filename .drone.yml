@@ -11,7 +11,7 @@ steps:
     commands:
       - npm install
       - ./node_modules/pm2/bin/pm2 --name Test start npm -- start 
-      - sleep 60
+      - sleep 120
       - npm test
       - ./node_modules/pm2/bin/pm2 --name Test stop all
 services:
@@ -23,7 +23,7 @@ services:
       POSTGRES_DB: rapidapi_adm
       PGDATA: /var/lib/postgresql/data/pgdata
     command:
-      - "CREATE SEQUENCE quote_id_seq START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE CACHE 1;
+      - PGPASSWORD=rapidapi psql -a -h 0 --user rapidapi_adm rapidapi_adm -c "CREATE SEQUENCE quote_id_seq START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE CACHE 1;
         CREATE TABLE quote (
             id bigint DEFAULT nextval('quote_id_seq'::regclass) NOT NULL PRIMARY KEY,
             quote character varying(255) NOT NULL UNIQUE,
