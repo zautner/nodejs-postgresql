@@ -11,10 +11,12 @@ steps:
     environment:
       DB_HOST: postgresql
     commands:
+      - pwd -P
       - npm install
+      - ls -lAtr
       - sleep 120
       - ./node_modules/pm2/bin/pm2 start npm -- start
-      - npm test
+       - npm test
       - ./node_modules/pm2/bin/pm2 stop all
 services:
   - name: postgesql
