@@ -16,8 +16,6 @@ steps:
       - ./node_modules/pm2/bin/pm2 start npm -- start
       - npm test
       - ./node_modules/pm2/bin/pm2 stop all
-depends_on:
-  - "postgresql"
 services:
   - name: postgesql
     image: postgresql:latest
