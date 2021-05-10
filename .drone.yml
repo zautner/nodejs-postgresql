@@ -9,7 +9,7 @@ steps:
   - name: test
     image: node:16
     environment:
-      DB_HOST: podtgresql
+      DB_HOST: postgresql
     commands:
       - npm install
       - sleep 120
