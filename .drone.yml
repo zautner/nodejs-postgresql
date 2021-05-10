@@ -23,7 +23,7 @@ services:
       POSTGRES_DB: rapidapi_adm
       PGDATA: /var/lib/postgresql/data/pgdata
     command:
-      - PGPASSWORD=rapidapi psql -a -h 0 --user rapidapi_adm rapidapi_adm -c "CREATE SEQUENCE quota_id_seq START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE CACHE 1;
+      - PGPASSWORD=rapidapi psql -a -h postgresql --user rapidapi_adm rapidapi_adm -c "CREATE SEQUENCE quota_id_seq START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE CACHE 1;
         CREATE TABLE quota (
             id bigint DEFAULT nextval('quota_id_seq'::regclass) NOT NULL PRIMARY KEY,
             quota character varying(255) NOT NULL UNIQUE,
