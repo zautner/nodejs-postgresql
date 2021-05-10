@@ -1,6 +1,13 @@
 const config = require('./config')
 const axios = require('axios')
 axios.defaults.adapter = require('axios/lib/adapters/http')
+const quotes = require('./services/quotes')
+
+test('database select config.listPerPage', async () => {
+  const ret = await quotes.getMultiple(1)
+  console.log({ret})
+  expect(ret.data.length).toBe(config.listPerPage)
+})
 
 test('index returns alive', async () => {
   const ret = await axios.get(`http://localhost:${config.port}`)
@@ -16,11 +23,4 @@ test('quotas', async () => {
   })
 })
 
-const quotes = require('./services/quotes')
-
-test('database select config.listPerPage', async () => {
-  const ret = await quotes.getMultiple(1)
-  console.log({ret})
-  expect(ret.data.length).toBe(config.listPerPage)
-})
 
